@@ -23,7 +23,7 @@ defineProps({
 <template>
   <div class="post">
     <div class="title">
-      <router-link :to="{ name: 'post', params: { postLink: postLink } }">
+      <router-link :to="{ name: 'postView', params: { postLink: postLink } }">
         {{ title }}
       </router-link>
     </div>

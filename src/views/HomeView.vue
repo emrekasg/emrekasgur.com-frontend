@@ -8,7 +8,7 @@ import { watch } from 'vue'
 <template>
   <div class="posts">
     <Post v-for="post in posts" :key="post.title" :title="post.title" :brief="post.brief" :createdAt="post.created_at"
-      :postLink="post.post_link" :link="post.link" />
+      :postLink="post.post_link" />
   </div>
 </template>
 

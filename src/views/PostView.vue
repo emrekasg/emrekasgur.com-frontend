@@ -6,22 +6,29 @@ import { marked } from 'marked'
 </script>
 
 <template>
-  <div class="post">
+  <div class="post-main" v-if="postLoaded">
     <div class="post-headers">
       <div class="post-title">
-        {{ this.post.title }}
+        {{ post.title }}
       </div>
-      <div class="brief">
-        {{ this.post.brief }}
+      <div class="date">
+        Created at: {{ post.created_at }}<br>
+        Updated at: {{ post.updated_at }}
       </div>
     </div>
 
-    <div class="post-content" v-html="this.post.content" />
+    <div class="post-content">
+      <div v-html="post.content"></div>
+    </div>
+  </div>
+
+  <div v-else>
+    Loading...
   </div>
 </template>
 
 <style lang="scss" scoped>
-.post {
+.post-main {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -36,6 +43,11 @@ import { marked } from 'marked'
 * {
   color: var(--reverse-color);
 }
+
+.date{
+  font-size: 0.8rem;
+  color: var(--extrainfo-color);
+}
 </style>
 
 <script>
@@ -45,7 +57,8 @@ export default {
   data() {
     return {
       postLink: this.$route.params.postLink,
-      post: [],
+      post: {},
+      postLoaded: false,
     }
   },
   methods: {
@@ -63,21 +76,22 @@ export default {
         tables: true,
         extensions: ['linkify', 'table', 'tasklist', 'emoji'],
       });
+      this.postLoaded = true;
     },
-    processContent() {
-      return
-    }
   },
-  beforeMount() {
-    this.getPosts()
+  created() {
+    watch(() => this.$route.params, () => {
+      this.postLink = this.$route.params.postLink;
+      this.getPosts();
+    }, { immediate: true })
+
   },
   mounted() {
-
     const languageStore = useLanguageStore()
     watch(() => languageStore.language, () => {
+      this.postLoaded = false;
       this.getPosts()
     })
-
   },
 }
 

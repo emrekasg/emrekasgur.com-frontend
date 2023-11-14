@@ -16,7 +16,7 @@ const router = createRouter({
     },
     {
       path: '/post/:postLink',
-      name: 'post',
+      name: 'postView',
       component: () => import('../views/PostView.vue')
     },
   ]
