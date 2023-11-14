@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@600&family=Inter:wght@700&family=Roboto:ital,wght@0,100;0,300;1,100;1,300;1,400&display=swap');
+
+html, body{
+  margin: 0;
+  padding: 0; 
+  font-family: 'Inter', sans-serif;
+  // font-family: 'Roboto', sans-serif; 
+
+}
+
+@mixin light() {
+  @media (prefers-color-scheme: light) {
+    @at-root #{selector-append(&, ':where(:root:not([data-theme=light]):not([data-theme=dark]) *)')} {
+      @content;
+    }
+  }
+  @at-root #{selector-append(&, ':where(:root[data-theme=light] *)')} {
+    @content;
+  }
+}
+
+@mixin dark() {
+  @media (prefers-color-scheme: dark) {
+    @at-root #{selector-append(&, ':where(:root:not([data-theme=light]):not([data-theme=dark]) *)')} {
+      @content;
+    }
+  }
+
+  @at-root #{selector-append(&, ':where(:root[data-theme=dark] *)')} {
+    @content;
+  }
+}
+
+body {
+  transition: background-color 0.5s ease;
+  background-color: var(--background-color);
+}

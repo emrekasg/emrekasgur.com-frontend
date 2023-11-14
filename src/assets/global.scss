@@ -1,0 +1,14 @@
+:root{
+    --background-color: white;
+    --reverse-color: black;
+    --extrainfo-color: gray;
+    --line-color: gray;
+}
+
+[data-theme="dark"]{
+    --background-color: black;
+    --reverse-color: white;
+    --extrainfo-color: gray;
+    --line-color: gray;
+}
+
