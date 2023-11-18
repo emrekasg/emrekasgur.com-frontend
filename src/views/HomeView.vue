@@ -8,19 +8,18 @@ import { watch } from 'vue'
 <template>
   <div class="posts">
     <Post v-for="post in posts" :key="post.title" :title="post.title" :brief="post.brief" :createdAt="post.created_at"
-      :postLink="post.post_link" />
+      :postLink="post.post_link" :tag="post.tag"></Post>
   </div>
 </template>
 
-<style scoped>
-.posts {
-  width: 50%;
-  height: 10%;
-  display: flex;
+<style scoped> .posts {
+   width: 50%;
+   height: 10%;
+   display: flex;
 
-  flex-direction: column;
-  align-items: space-between;
-}
+   flex-direction: column;
+   align-items: space-between;
+ }
 </style>
 
 <script>

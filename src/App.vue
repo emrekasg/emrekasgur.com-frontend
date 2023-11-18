@@ -16,13 +16,11 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="language">
       <a @click="changeLanguage('en')">English</a>
       <a @click="changeLanguage('tr')">Turkish</a>
-    </div>
-
-    <div class="theme">
-      <button @click="toggleTheme">Toggle theme</button>
+      <div class="theme">
+        <button @click="toggleTheme">Toggle theme</button>
+      </div>
     </div>
   </div>
-
 
   <div class="main">
     <RouterView></RouterView>
@@ -49,7 +47,6 @@ export default {
     useThemeStore().setThemeOnStart()
   },
 }
-
 </script>
 
 <style lang="scss" scoped>

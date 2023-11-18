@@ -6,7 +6,7 @@ import { marked } from 'marked'
 </script>
 
 <template>
-  <div class="post-main" v-if="postLoaded">
+  <div class="post-main" v-if="postLoaded && post != null">
     <div class="post-headers">
       <div class="post-title">
         {{ post.title }}
@@ -21,7 +21,9 @@ import { marked } from 'marked'
       <div v-html="post.content"></div>
     </div>
   </div>
-
+  <div v-else-if="postLoaded && post == null">
+    Selected language of this post is not available.
+  </div>
   <div v-else>
     Loading...
   </div>
@@ -44,7 +46,7 @@ import { marked } from 'marked'
   color: var(--reverse-color);
 }
 
-.date{
+.date {
   font-size: 0.8rem;
   color: var(--extrainfo-color);
 }
@@ -68,6 +70,9 @@ export default {
       const response = await fetch('https://backend.emrekasgur.com/posts/' + this.postLink + '?language=' + lang)
       const data = await response.json()
 
+
+      this.postLoaded = true;
+
       this.post = data.data;
       this.post.content = marked(this.post.content, {
         sanitize: true,
@@ -76,7 +81,6 @@ export default {
         tables: true,
         extensions: ['linkify', 'table', 'tasklist', 'emoji'],
       });
-      this.postLoaded = true;
     },
   },
   created() {
@@ -94,5 +98,4 @@ export default {
     })
   },
 }
-
 </script>

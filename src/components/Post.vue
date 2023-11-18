@@ -1,4 +1,6 @@
 <script setup>
+import TagBadge from './TagBadge.vue'
+
 defineProps({
   title: {
     type: String,
@@ -16,8 +18,10 @@ defineProps({
     type: String,
     required: true
   },
-
-
+  tag: {
+    type: String,
+    required: true
+  }
 })
 </script>
 <template>
@@ -34,6 +38,11 @@ defineProps({
     </div>
     <div class="timestamps">
       <p> Created at: {{ createdAt }} </p>
+    </div>
+
+    <div class="tag">
+      <p> Tagged with: </p>
+      <TagBadge :topicName="tag"></TagBadge>
     </div>
 
     <div class="line"></div>
@@ -84,5 +93,24 @@ defineProps({
   height: 1px;
   background-color: var(--line-color);
   margin-bottom: 2rem;
+}
+
+.tag {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--reverse-color);
+}
+
+.tag .tag-badge {
+  background-color: var(--extrainfo-color);
+  color: var(--reverse-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 </style>
