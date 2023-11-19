@@ -34,7 +34,7 @@ import Post from '../components/Post.vue'
    margin: 3rem;
    font-size: 2rem;
    font-weight: bold;
-   color: var(--reverse-color);
+   color: #fff;
    background-color: var(--extrainfo-color);
    padding: 1rem;
    border-radius: 5px;
