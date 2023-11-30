@@ -8,7 +8,6 @@ const host = window.location.host
 const isLocalhost = host.indexOf('localhost') > -1
 const parts = host.split('.')
 
-
 let routes = []
 
 if (isLocalhost) {
